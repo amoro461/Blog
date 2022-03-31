@@ -1,9 +1,48 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
 
-<h1>Hello, world!</h1>
+    <title>Document</title>
+</head>
 
-Welcome to your new app.
+<body>
+    <nav class="navbar">
+        <img src="../img/logo.png" class="logo" alt="" height="80px">
+        <ul class="links-container">
+            <li class="link-item"><a href="#" class="link">home</a></li>
+            <li class="link-item"><a href="editor.html" class="link">editor</a></li>
+        </ul>
+    </nav>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    <header class="header">
+        <div class="content">
+            <h1 class="heading">
+                <span class="small">Welcome in the world of</span>
+                blog
+                <span class="no-fill">writing</span>
+            </h1>
+            <a href="editor.html" class="btn">write a blog</a>
+        </div>
+    </header>
+
+    <section class="blogs-section">
+        <div class="blog-card">
+            <img src="../img/mountain.jpg" class="blog-image" alt="">
+            <h1 class="blog-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+            <p class="blog-overview">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit consectetur
+                beatae ab maiores. Enim, fuga.</p>
+            <a href="post.html" class="btn dark">read</a>
+        </div>
+        <div class="blog-card">
+            <img src="../img/waves.jpg" class="blog-image" alt="">
+            <h1 class="blog-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+            <p class="blog-overview">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit consectetur
+                beatae ab maiores. Enim, fuga.</p>
+            <a href="post.html" class="btn dark">read</a>
+        </div>
+    </section>
+</body>
