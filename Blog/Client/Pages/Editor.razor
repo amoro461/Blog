@@ -4,23 +4,27 @@
 <PageTitle>Editor</PageTitle>
 
 <body>
-    <nav class="navbar">
-        <img src="../img/logo.png" class="logo" alt="" height="80px">
-        <ul class="links-container">
-            <li class="link-item">
-                <NavLink href="/">
-                    <span class="link">home</span>
-                </NavLink></li>
-            <li class="link-item">
-                <NavLink href="editor">
-                    <span class="link">editor</span>
-                </NavLink>
-            </li>
-        </ul>
-    </nav>
+    <header>
+        <nav class="navbar">
+            <img src="../img/logo2.jpg" class="logo" alt="">
+            <ul class="links-container">
+                <li class="link-item">
+                    <NavLink href="/">
+                        <span class="link">Home</span>
+                    </NavLink>
+                </li>
+                <li class="link-item">
+                    <NavLink href="editor">
+                        <span class="link">Editor</span>
+                    </NavLink>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
     <div class="banner">
         <input type="file" accept="image/*" id="banner-upload" hidden>
-        <label for="banner-upload" class="banner-upload-btn"><img src="../img/upload.jpg" alt="upload banner"
+        <label for="banner-upload" class="banner-upload-btn"><img src="../img/upload.png" alt="upload banner"
                 height="50px"></label>
     </div>
     <div class="blog">
@@ -30,7 +34,5 @@
 
     <div class="blog-options">
         <button class="btn dark publish-btn">publish</button>
-        <input type="file" accept="image/*" id="image-upload" hidden>
-        <label for="image-upload" class="btn grey upload-btn">Upload Image</label>
     </div>
 </body>
