@@ -1,9 +1,11 @@
 ﻿@page "/"
 @namespace Blog.Client.Pages
+@inject HttpClient Http
 
 <PageTitle>Index</PageTitle>
 
 <body>
+    <div>@apiMessage</div>
     <header>
         <nav class="navbar">
             <img src="../img/logo2.jpg" class="logo" alt="">
@@ -56,3 +58,17 @@
         </div>
     </section>
 </body>
+
+@code{
+    private string apiMessage = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        HttpResponseMessage response = await Http.GetAsync("/api/Function1");
+
+        if(response.IsSuccessStatusCode)
+        {
+            apiMessage = await response.Content.ReadAsStringAsync();
+        }
+    }
+}
