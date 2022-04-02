@@ -1,14 +1,23 @@
 ﻿@page "/editor"
 @namespace Blog.Client.Pages
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog:Editor</title>
-</head>
+<PageTitle>Editor</PageTitle>
 
 <body>
+    <nav class="navbar">
+        <img src="../img/logo.png" class="logo" alt="" height="80px">
+        <ul class="links-container">
+            <li class="link-item">
+                <NavLink href="/">
+                    <span class="link">home</span>
+                </NavLink></li>
+            <li class="link-item">
+                <NavLink href="editor">
+                    <span class="link">editor</span>
+                </NavLink>
+            </li>
+        </ul>
+    </nav>
     <div class="banner">
         <input type="file" accept="image/*" id="banner-upload" hidden>
         <label for="banner-upload" class="banner-upload-btn"><img src="../img/upload.jpg" alt="upload banner"

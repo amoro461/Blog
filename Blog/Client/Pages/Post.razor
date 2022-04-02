@@ -1,25 +1,23 @@
 ﻿@page "/post"
 @namespace Blog.Client.Pages
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-
+<PageTitle>Post</PageTitle>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <img src="../img/logo.png" class="logo" alt="" height="80px">
-            <ul class="links-container">
-                <li class="link-item"><a href="sample.html" class="link">home</a></li>
-                <li class="link-item"><a href="editor.html" class="link">editor</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav class="navbar">
+        <img src="../img/logo.png" class="logo" alt="" height="80px">
+        <ul class="links-container">
+            <li class="link-item">
+                <NavLink href="/">
+                    <span class="link">home</span>
+                </NavLink></li>
+            <li class="link-item">
+                <NavLink href="editor">
+                    <span class="link">editor</span>
+                </NavLink>
+            </li>
+        </ul>
+    </nav>
     <img class="banner" src="../img/mountain.jpg" alt="waves">
     <div class="wrapper">
         <article class="info">
