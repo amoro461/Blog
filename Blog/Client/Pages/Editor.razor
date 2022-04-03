@@ -1,6 +1,7 @@
 ﻿@page "/editor"
 @namespace Blog.Client.Pages
 @inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
 
 <PageTitle>Editor</PageTitle>
 
@@ -35,6 +36,12 @@
 
             if(response.IsSuccessStatusCode)
             {
+                List<PostModel> postModels = await HttpClient.GetFromJsonAsync<List<PostModel>>("https://db2ass2.azurewebsites.net/api/User_Posts/%7Bid%7D?code=c6QKe6vqMndkZuyk0gkcJrBqLM4TaehjdOSd9vlwvqCFaQMVCQ58Yg==");
+
+                if(postModels != null && postModels.Count > 0)
+                {
+                    NavigationManager.NavigateTo($"/post/{postModels.LastOrDefault().PostId}");
+                }
             }
         }
     }
