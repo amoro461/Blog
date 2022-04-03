@@ -1,0 +1,40 @@
+﻿@page "/BlogList"
+@namespace Blog.Client.Pages
+@inject HttpClient HttpClient
+
+<PageTitle>Blog List</PageTitle>
+
+<body>
+    <h2>Our Blogs</h2>
+
+    <div class="blog-container">
+        <div class="box">
+            @foreach(PostModel postModel in PostModels)
+            {
+                <div class="blog-content">
+                    <div class="title">
+                        <h3>@postModel.PostTitle</h3>
+                    </div>
+                    <p class="text-truncate">@postModel.PostContent.Substring(0, postModel.PostContent.Length > 300 ? 300 : postModel.PostContent.Length)</p>
+                    <NavLink href="@($"post/{postModel.PostId}")">
+                        <span class="box-btn">Read More</span>
+                    </NavLink>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+
+@code{
+    protected List<PostModel> PostModels { get; set; }
+
+    protected override void OnInitialized()
+    {
+        PostModels = new();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        PostModels = await HttpClient.GetFromJsonAsync<List<PostModel>>("https://db2ass2.azurewebsites.net/api/User_Posts/%7Bid%7D?code=c6QKe6vqMndkZuyk0gkcJrBqLM4TaehjdOSd9vlwvqCFaQMVCQ58Yg==");
+    }
+}

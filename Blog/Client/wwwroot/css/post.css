@@ -13,20 +13,20 @@
     width: 100%;
 }
 
-.info h2 {
-    padding: 30px 30px 20px;
-    line-height: 44px;
-    text-align: center;
-    letter-spacing: 10px;
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-    color: #2c6975;
-}
+    .info h2 {
+        padding: 30px 30px 20px;
+        line-height: 44px;
+        text-align: center;
+        letter-spacing: 10px;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        color: #2c6975;
+    }
 
-.info p {
-    padding: 0px 30px 20px;
-    line-height: 24px;
-}
+    .info p {
+        padding: 0px 30px 20px;
+        line-height: 24px;
+    }
 
 .comment-section {
     background-image: linear-gradient(to bottom, #2c6975, #68b39f, #cedfcc, #e0ecde);
@@ -43,53 +43,52 @@
     margin-top: 80px;
     outline: none;
     background: white;
-
 }
 
 
-.comments h3 {
-    text-align: left;
-    font-size: 28px;
-    color: #2c6975;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    padding-bottom: 20px;
-}
+    .comments h3 {
+        text-align: left;
+        font-size: 28px;
+        color: #2c6975;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        padding-bottom: 20px;
+    }
 
-.comments input,
-.comments textarea {
-    letter-spacing: 2px;
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    box-sizing: border-box;
-    outline: none;
-    font-size: 18px;
-    border: 1px solid #68b39f;
-    color: #000;
-    resize: none;
-}
+    .comments input,
+    .comments textarea {
+        letter-spacing: 2px;
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        outline: none;
+        font-size: 18px;
+        border: 1px solid #68b39f;
+        color: #000;
+        resize: none;
+    }
 
-.comments button {
-    text-transform: uppercase;
-    margin: 10px 0;
-    border: none;
-    background-color: #68b39f;
-    padding: 10px;
-    font-size: 18x;
-    border-radius: 3px;
-    color: white;
-    width: 20%;
-    transition: 0.5s;
-}
+    .comments button {
+        text-transform: uppercase;
+        margin: 10px 0;
+        border: none;
+        background-color: #68b39f;
+        padding: 10px;
+        font-size: 18x;
+        border-radius: 3px;
+        color: white;
+        width: 20%;
+        transition: 0.5s;
+    }
 
-.comments button:hover {
-    background: #cedfcc;
-    color: #68b39f;
-    cursor: pointer;
-    transition: 0.5s;
-    font-weight: bold;
-}
+        .comments button:hover {
+            background: #cedfcc;
+            color: #68b39f;
+            cursor: pointer;
+            transition: 0.5s;
+            font-weight: bold;
+        }
 
 .public-comments {
     padding: 30px 20px;
@@ -104,19 +103,19 @@
     position: relative;
 }
 
-.comment-container::before {
-    content: "";
-    background: grey;
-    position: absolute;
-    min-height: 100%;
-    width: 1px;
-    left: -10px;
-}
+    .comment-container::before {
+        content: "";
+        background: grey;
+        position: absolute;
+        min-height: 100%;
+        width: 1px;
+        left: -10px;
+    }
 
-.comment-container:not(:first-child) {
-    margin-left: 3em;
-    margin-top: 1em;
-}
+    .comment-container:not(:first-child) {
+        margin-left: 3em;
+        margin-top: 1em;
+    }
 
 .comment-card {
     padding: 20px;
@@ -126,24 +125,28 @@
     min-width: 100%;
 }
 
-.comment-card h6,
-.comment-card p {
-    margin-bottom: 1em;
-}
+    .comment-card h6,
+    .comment-card p {
+        margin-bottom: 1em;
+    }
 
-.comment-card .footer {
-    display: flex;
-    font-size: .05rem;
-    opacity: .6;
-    gap: 15px;
-    justify-content: flex-end;
-    align-items: center;
-}
+    .comment-card .footer {
+        display: flex;
+        font-size: .05rem;
+        opacity: .6;
+        gap: 15px;
+        justify-content: flex-end;
+        align-items: center;
+    }
 
 .edit,
 .delete {
     cursor: pointer;
     padding: 10px 15px;
+}
+
+.date {
+    font-size: 12px;
 }
 
 @media (max-width: 600px) {
@@ -159,4 +162,8 @@
     #comments textarea::placeholder {
         font-size: 14px;
     }
+}
+
+.comment-title {
+    text-align: start;
 }

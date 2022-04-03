@@ -1,59 +1,91 @@
-﻿@page "/post"
+﻿@page "/post/{PostId}"
 @namespace Blog.Client.Pages
+@inject HttpClient HttpClient
 
 <PageTitle>Post</PageTitle>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <img src="../img/logo2.jpg" class="logo" alt="">
-            <ul class="links-container">
-                <li class="link-item">
-                    <NavLink href="/">
-                        <span class="link">Home</span>
-                    </NavLink>
-                </li>
-                <li class="link-item">
-                    <NavLink href="editor">
-                        <span class="link">Editor</span>
-                    </NavLink>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
     <img class="banner" src="../img/mountain.jpg" alt="waves">
     <div class="wrapper">
         <article class="info">
-            <h2>Title</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam iure tempore quidem accusamus labore
-                blanditiis, corrupti nostrum asperiores dolor sunt sed voluptatem necessitatibus facilis saepe magni
-                illo fugiat minima molestiae provident quam natus, eaque quaerat. Vitae aliquam eligendi quidem
-                cupiditate facere, eos hic optio ipsum! Quae, laudantium? Cum voluptatem consequuntur sint! Obcaecati
-                enim maxime iusto modi perspiciatis, eos aliquid possimus aut placeat facere error explicabo est
-                voluptatem porro blanditiis itaque soluta fuga molestias culpa delectus, doloremque impedit vel quos
-                quod. Fugiat nulla tenetur animi aut incidunt repudiandae vel reiciendis ratione, neque illum nisi
-                sapiente quo repellat laboriosam quisquam itaque est fuga nobis praesentium sint porro! Similique earum
-                mollitia neque. Officiis magnam optio consequuntur assumenda sunt harum omnis accusamus facere in nihil,
-                veniam doloremque corrupti nulla enim facilis cumque quos aspernatur accusantium atque illum minima
-                expedita hic ut? Laborum, omnis nobis debitis quibusdam nam aspernatur enim quos necessitatibus,
-                reprehenderit maxime error quidem? Tenetur, ducimus vero natus adipisci, a deleniti porro doloribus,
-                perspiciatis eum laboriosam nostrum iste. Dolorum ipsum impedit blanditiis ducimus vitae soluta,
-                expedita quae facere repudiandae veritatis praesentium quaerat id modi voluptatem, eligendi quo
-                voluptatum officia totam? Temporibus veniam vel, sint voluptas rerum molestias, laudantium ab harum nam
-                perferendis provident?</p>
+            <h2>@PostModel.PostTitle</h2>
+            <p>@PostModel.PostContent</p>
         </article>
         <div class="comment-section">
             <div class="comments">
                 <h3>Leave A Comment</h3>
-                <form action="#" id="comments">
-                    <input id="name" type="text" name="name" placeholder="Enter your name">
-                    <textarea id="comment" name="comment" cols="30" rows="10"
-                        placeholder="Enter your comment"></textarea>
+                <EditForm Model="CommentModel" OnValidSubmit="OnSubmit">
+                    <InputTextArea @bind-Value="CommentModel.CommentMessage" cols="30" rows="10"
+                        placeholder="Enter your comment"></InputTextArea>
+                        <ValidationMessage For="(() => CommentModel.CommentMessage)"></ValidationMessage>
                     <button class='btn' id="btn" type="submit">Submit</button>
-                </form>
+                </EditForm>
             </div>
             <h2 class="public-comments">Comments</h2>
+            <hr>
+            <div class="container" id="container">
+                <div class="comment-container">
+                    @foreach(CommentModel commentModel in CommentModels)
+                    {
+                        <div class="comment-card mb-2" id="card">
+                            <h5 class="comment-title" id="title">Username</h5>
+                            <p class="date">MM/YYYY</p>
+                            <p id="text">@commentModel.CommentMessage</p>
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
     </div>
 </body>
+
+@code{
+    [Parameter]
+    public string PostId { get; set; }
+
+    protected PostModel PostModel { get; set; }
+    protected CommentModel CommentModel { get; set; }
+    protected List<CommentModel> CommentModels { get; set; }
+
+    protected override void OnInitialized()
+    {
+        PostModel = new();
+        CommentModels = new();
+        CommentModel = NewCommentModel();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        List<PostModel> Posts = new();
+        List<CommentModel> AllCommentModels = new();
+
+        Posts = await HttpClient.GetFromJsonAsync<List<PostModel>>("https://db2ass2.azurewebsites.net/api/User_Posts/%7Bid%7D?code=c6QKe6vqMndkZuyk0gkcJrBqLM4TaehjdOSd9vlwvqCFaQMVCQ58Yg==");
+        AllCommentModels = await HttpClient.GetFromJsonAsync<List<CommentModel>>("https://db2ass2.azurewebsites.net/api/User_Comments/%7Bid%7D?code=x5wsN4ioVWUx2gFLJVeqe4KzvGz03yhEMJ476RlSrxopMaRYO0UH7A==");
+        PostModel = Posts.FirstOrDefault(i => i.PostId.Equals(PostId));
+        CommentModels = AllCommentModels.Where(i => i.PostId.Equals(PostId) && !string.IsNullOrEmpty(i.CommentMessage)).ToList();
+    }
+
+    private async void OnSubmit(EditContext editContext)
+    {
+        if(editContext.Validate())
+        {
+            HttpResponseMessage response = await HttpClient.PostAsJsonAsync<CommentModel>("https://db2ass2.azurewebsites.net/api/User_Comments/%7Bid%7D?code=x5wsN4ioVWUx2gFLJVeqe4KzvGz03yhEMJ476RlSrxopMaRYO0UH7A==", value: CommentModel);
+
+            if(response.IsSuccessStatusCode)
+            {
+                CommentModels.Add(CommentModel);
+                CommentModel = NewCommentModel();
+                StateHasChanged();
+            }
+        }
+    }
+
+    private CommentModel NewCommentModel()
+    {
+        return new CommentModel()
+        {
+            PostId = PostId,
+            CommentMessage = ""
+        };
+    }
+}

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Client", "Blog\Client\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Shared", "Blog\Shared\Blog.Shared.csproj", "{D0A9A5AA-BC1C-4471-8A7C-4F22F82726C7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Api", "Blog.Api\Blog.Api.csproj", "{B9B1754D-9705-4FDF-BF6B-84902272B12E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.Api", "Blog.Api\Blog.Api.csproj", "{2D1164A7-E130-4D79-B1C8-BF945AB66D20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{D0A9A5AA-BC1C-4471-8A7C-4F22F82726C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0A9A5AA-BC1C-4471-8A7C-4F22F82726C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0A9A5AA-BC1C-4471-8A7C-4F22F82726C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B9B1754D-9705-4FDF-BF6B-84902272B12E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9B1754D-9705-4FDF-BF6B-84902272B12E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9B1754D-9705-4FDF-BF6B-84902272B12E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9B1754D-9705-4FDF-BF6B-84902272B12E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D1164A7-E130-4D79-B1C8-BF945AB66D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D1164A7-E130-4D79-B1C8-BF945AB66D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D1164A7-E130-4D79-B1C8-BF945AB66D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D1164A7-E130-4D79-B1C8-BF945AB66D20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

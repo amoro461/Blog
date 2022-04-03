@@ -1,38 +1,41 @@
 ﻿@page "/editor"
 @namespace Blog.Client.Pages
+@inject HttpClient HttpClient
 
 <PageTitle>Editor</PageTitle>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <img src="../img/logo2.jpg" class="logo" alt="">
-            <ul class="links-container">
-                <li class="link-item">
-                    <NavLink href="/">
-                        <span class="link">Home</span>
-                    </NavLink>
-                </li>
-                <li class="link-item">
-                    <NavLink href="editor">
-                        <span class="link">Editor</span>
-                    </NavLink>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <EditForm Model="Post" OnValidSubmit="OnSubmit">
+        <div class="blog">
+            <InputTextArea @bind-Value="Post.PostTitle" type="text" class="editor-title" placeholder="Blog title..."></InputTextArea>
+            <ValidationMessage For="(() => Post.PostTitle)"></ValidationMessage>
+            <InputTextArea @bind-Value="Post.PostContent" type="text" class="article" placeholder="Start writing..."></InputTextArea>
+            <ValidationMessage For="(() => Post.PostContent)"></ValidationMessage>
+        </div>
 
-    <div class="banner">
-        <input type="file" accept="image/*" id="banner-upload" hidden>
-        <label for="banner-upload" class="banner-upload-btn"><img src="../img/upload.png" alt="upload banner"
-                height="50px"></label>
-    </div>
-    <div class="blog">
-        <textarea type="text" class="title" placeholder="Blog title..."></textarea>
-        <textarea type="text" class="article" placeholder="Start writing..."></textarea>
-    </div>
-
-    <div class="blog-options">
-        <button class="btn dark publish-btn">publish</button>
-    </div>
+        <div class="blog-options">
+            <button type="submit" class="btn dark publish-btn">publish</button>
+        </div>
+    </EditForm>
 </body>
+
+@code{
+    protected PostModel Post { get; set; }
+
+    override protected async void OnInitialized()
+    {
+        Post = new();
+    }
+
+    private async Task OnSubmit(EditContext editContext)
+    {
+        if(editContext.Validate())
+        {
+            HttpResponseMessage response = await HttpClient.PostAsJsonAsync<PostModel>("https://db2ass2.azurewebsites.net/api/User_Posts/%7Bid%7D?code=c6QKe6vqMndkZuyk0gkcJrBqLM4TaehjdOSd9vlwvqCFaQMVCQ58Yg==", value: Post);
+
+            if(response.IsSuccessStatusCode)
+            {
+            }
+        }
+    }
+}

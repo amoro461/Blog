@@ -1,29 +1,9 @@
 ﻿@page "/"
 @namespace Blog.Client.Pages
-@inject HttpClient Http
 
 <PageTitle>Index</PageTitle>
 
 <body>
-    <div>@apiMessage</div>
-    <header>
-        <nav class="navbar">
-            <img src="../img/logo2.jpg" class="logo" alt="">
-            <ul class="links-container">
-                <li class="link-item">
-                    <NavLink href="/">
-                        <span class="link">Home</span>
-                    </NavLink>
-                </li>
-                <li class="link-item">
-                    <NavLink href="editor">
-                        <span class="link">Editor</span>
-                    </NavLink>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
     <header class="header">
         <div class="content">
             <h1 class="heading">
@@ -43,7 +23,7 @@
             <h1 class="blog-title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
             <p class="blog-overview">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit consectetur
                 beatae ab maiores. Enim, fuga.</p>
-            <NavLink href="post">
+            <NavLink href="post/6249f11e6e1bc5264ca6b59d">
                 <span class="btn dark">Read</span>
             </NavLink>
         </div>
@@ -58,17 +38,3 @@
         </div>
     </section>
 </body>
-
-@code{
-    private string apiMessage = "";
-
-    protected override async Task OnInitializedAsync()
-    {
-        HttpResponseMessage response = await Http.GetAsync("/api/Function1");
-
-        if(response.IsSuccessStatusCode)
-        {
-            apiMessage = await response.Content.ReadAsStringAsync();
-        }
-    }
-}

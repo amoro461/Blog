@@ -1,39 +1,24 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Blog</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
+﻿@namespace Blog.Shared
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="editor">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>
+<header>
+    <nav class="navbar">
+        <img src="../img/logo2.jpg" class="logo" alt="">
+        <ul class="links-container">
+            <li class="link-item">
+                <NavLink href="/">
+                    <span class="link">Home</span>
+                </NavLink>
+            </li>
+            <li class="link-item">
+                <NavLink href="editor">
+                    <span class="link">Editor</span>
+                </NavLink>
+            </li>
+            <li class="link-item">
+                <NavLink href="bloglist">
+                    <span class="link">Blogs</span>
+                </NavLink>
+            </li>
+        </ul>
     </nav>
-</div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
+</header>
