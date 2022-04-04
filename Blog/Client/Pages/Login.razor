@@ -1,0 +1,44 @@
+﻿@page "/Login"
+@namespace Blog.Client.Pages
+@using Blog.Client.Services
+@inject UserService _userService
+@inject NavigationManager _navManager
+
+<body>
+    <div class="center">
+        <h1>Login</h1>
+        <EditForm Model="UserModel" OnSubmit="OnSubmit">
+            <div class="text-field">
+                <InputText @bind-Value="UserModel.Username" type="username"></InputText>
+                <span></span>
+                <label>Username</label>
+            </div>
+            <div class="text-field">
+                <InputText @bind-Value="UserModel.Password" type="password"></InputText>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <input type="submit" value="Login" class="login-btn">
+        </EditForm>
+    </div>
+</body>
+
+@code{
+    private UserModel UserModel { get; set; }
+
+    protected override void OnInitialized()
+    {
+        UserModel = new();
+    }
+
+    private async void OnSubmit(EditContext editContext)
+    {
+        if(editContext.Validate())
+        {
+        if(await _userService.LoginUser(username: UserModel.Username, password: UserModel.Password))
+        {
+            _navManager.NavigateTo("/");
+        }
+        }
+    }
+}
