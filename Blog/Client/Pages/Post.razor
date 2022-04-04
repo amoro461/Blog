@@ -28,8 +28,8 @@
                     @foreach(CommentModel commentModel in CommentModels)
                     {
                         <div class="comment-card mb-2" id="card">
-                            <h5 class="comment-title" id="title">Username</h5>
-                            <p class="date">MM/YYYY</p>
+                            <h5 class="comment-title" id="title">@commentModel.Username</h5>
+                            <p class="date">@commentModel.DateTime?.ToShortDateString()</p>
                             <p id="text">@commentModel.CommentMessage</p>
                         </div>
                     }
@@ -85,7 +85,9 @@
         return new CommentModel()
         {
             PostId = PostId,
-            CommentMessage = ""
+            CommentMessage = "",
+            Username = "tester",
+            DateTime = DateTime.Now
         };
     }
 }

@@ -7,17 +7,13 @@ namespace Blog.Client.Services
 {
     public class UserService
     {
-        protected HttpClient _httpClient;
+        [Inject]
+        protected HttpClient _httpClient { get; set; }
 
         public UserModel UserModel { get; set; }
         public List<UserModel> UserModels { get; set; }
 
-        public bool IsLoggedIn { get; set; }
-
-        public UserService(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
+        private bool IsLoggedIn { get; set; }
 
         public async Task<bool> LoginUser(string username, string password)
         {
@@ -33,6 +29,11 @@ namespace Blog.Client.Services
                 IsLoggedIn = false;
             }
 
+            return IsLoggedIn;
+        }
+
+        public bool GetLoginStatus()
+        {
             return IsLoggedIn;
         }
     }

@@ -1,4 +1,5 @@
 ﻿@namespace Blog.Shared
+@inject UserService _userSerivce
 
 <header>
     <nav class="navbar">
@@ -19,11 +20,14 @@
                     <span class="link">Blogs</span>
                 </NavLink>
             </li>
-            <li class="link-item">
-                <NavLink href="login">
-                    <span class="link">Login</span>
-                </NavLink>
-            </li>
+            @if(!_userSerivce.GetLoginStatus())
+            {
+                <li class="link-item">
+                    <NavLink href="login">
+                        <span class="link">Login</span>
+                    </NavLink>
+                </li>
+            }
         </ul>
     </nav>
 </header>

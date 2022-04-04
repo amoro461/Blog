@@ -19,5 +19,11 @@ namespace Blog.Shared
         [Required(ErrorMessage = "Require Message")]
         [JsonPropertyName("comment_message")]
         public string? CommentMessage { get; set; }
+
+        [JsonPropertyName("username")]
+        public string? Username { get; set; }
+
+        [JsonPropertyName("date")]
+        public DateTime? DateTime { get; set; }
     }
 }
